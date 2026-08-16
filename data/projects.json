@@ -22,53 +22,5 @@
       "assets/projects/spsb/view.png",
       "assets/projects/spsb/whatsapp.png"
     ]
-  },
-  {
-    "id": 2,
-    "name": "E-Commerce Admin Dashboard",
-    "version": "v2.4.0",
-    "lastUpdated": "2026-07-15",
-    "demoUrl": "https://demo.example.com/dashboard",
-    "githubUrl": "https://github.com/example/ecommerce-dashboard",
-    "techStack": ["React", "Chart.js", "Node.js", "MongoDB", "CSS Grid"],
-    "purpose": "A high-performance analytics dashboard designed for online store managers, displaying real-time sales telemetry, user demographics, and automated inventory alerts.",
-    "orientation": "horizontal",
-    "images": [
-      "https://placehold.co/600x338/0c1328/00f0ff?text=Dashboard+Overview",
-      "https://placehold.co/360x640/ff0055/ffffff?text=Mobile+Vertical+View",
-      "https://placehold.co/600x338/0c1328/8a2be2?text=Inventory+Management"
-    ]
-  },
-  {
-    "id": 3,
-    "name": "FitTrack Mobile App",
-    "version": "v1.1.2",
-    "lastUpdated": "2026-07-20",
-    "demoUrl": "https://demo.example.com/fittrack",
-    "githubUrl": "https://github.com/example/fittrack-app",
-    "techStack": ["React Native", "Redux", "Expo", "Express", "PostgreSQL"],
-    "purpose": "A sleek, dark-themed mobile application for tracking workouts, daily calorie burn, water intake, and heart rate telemetry with visual progress indicators.",
-    "orientation": "vertical",
-    "images": [
-      "https://placehold.co/360x640/0c1328/00f0ff?text=FitTrack+Home",
-      "https://placehold.co/360x640/0c1328/3a86ff?text=Workout+Logger",
-      "https://placehold.co/360x640/0c1328/8a2be2?text=User+Profile"
-    ]
-  },
-  {
-    "id": 4,
-    "name": "AI-Powered Code Editor",
-    "status": "archived",
-    "version": "v0.8.5-beta",
-    "lastUpdated": "2026-07-18",
-    "demoUrl": "https://demo.example.com/ai-editor",
-    "githubUrl": "https://github.com/example/ai-code-editor",
-    "techStack": ["Vue.js", "Monaco Editor", "TensorFlow.js", "WebSockets", "CSS Variables"],
-    "purpose": "A state-of-the-art web-based code editor equipped with an inline AI helper that provides autocompletion, real-time bug suggestions, and automated code formatting.",
-    "orientation": "horizontal",
-    "images": [
-      "https://placehold.co/600x338/0c1328/00f0ff?text=AI+Editor+Workspace",
-      "https://placehold.co/600x338/0c1328/3a86ff?text=AI+Chat+Assistant"
-    ]
   }
 ]
