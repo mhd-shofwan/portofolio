@@ -301,7 +301,7 @@ document.addEventListener('DOMContentLoaded', () => {
               ${techBadges}
             </div>
             <div class="project-links">
-              <a href="${project.demoUrl}" target="_blank" rel="noopener" class="link-demo">Demo Live</a>
+              ${project.demoUrl ? `<a href="${project.demoUrl}" target="_blank" rel="noopener" class="link-demo">Demo Live</a>` : ''}
               <a href="${project.githubUrl}" target="_blank" rel="noopener" class="link-code">Kode Sumber</a>
             </div>
           </div>

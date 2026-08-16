@@ -4,7 +4,6 @@
     "name": "SPSB - Sistem Penerimaan Santri Baru",
     "version": "v1.0.0",
     "lastUpdated": "2025-10-17",
-    "demoUrl": "http://localhost/spsb",
     "githubUrl": "https://github.com/mhd-shofwan/spsb-showcase",
     "techStack": ["PHP 8", "MySQL", "Tailwind CSS", "jQuery", "JavaScript", "WhatsApp API"],
     "purpose": "SPSB merupakan sistem manajemen penerimaan santri berbasis web yang dirancang untuk pondok pesantren dan lembaga pendidikan Islam. Sistem ini memiliki alur pendaftaran bertahap (multi-step), dukungan tanda tangan digital, manajemen pembayaran, integrasi pesan WhatsApp, ekspor data Excel, serta dashboard statistik interaktif.",
@@ -21,6 +20,25 @@
       "assets/projects/spsb/users.png",
       "assets/projects/spsb/view.png",
       "assets/projects/spsb/whatsapp.png"
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Aplikasi Absensi Digital",
+    "version": "v1.3.0",
+    "lastUpdated": "2026-08-16",
+    "githubUrl": "https://github.com/mhd-shofwan/digital-attendance-app",
+    "techStack": ["JavaScript", "Tailwind CSS", "Firebase", "Firestore", "SheetJS"],
+    "purpose": "Aplikasi Absensi Digital berbasis web real-time (Kiosk-mode) yang dirancang khusus untuk pencatatan kehadiran acara/kegiatan. Fitur utama meliputi Kiosk Mode tanpa otentikasi peserta, persetujuan perangkat (device approval) oleh admin, manajemen event & peserta (bulk import CSV), ekspor laporan Excel (.xlsx) terpisah gender, serta pembaruan paksa (force auto-update) untuk semua kiosk aktif.",
+    "orientation": "horizontal",
+    "images": [
+      "assets/projects/digital-attendance-app/1. Absensi.png",
+      "assets/projects/digital-attendance-app/2. Proses Absen.png",
+      "assets/projects/digital-attendance-app/3. Login Admin.png",
+      "assets/projects/digital-attendance-app/4. Panel Admin.png",
+      "assets/projects/digital-attendance-app/5. Data Peserta.png",
+      "assets/projects/digital-attendance-app/6. Data Event.png",
+      "assets/projects/digital-attendance-app/7. Dashboard Event.png"
     ]
   }
 ]
