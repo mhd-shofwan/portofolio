@@ -9,17 +9,17 @@
     "purpose": "SPSB merupakan sistem manajemen penerimaan santri berbasis web yang dirancang untuk pondok pesantren dan lembaga pendidikan Islam. Sistem ini memiliki alur pendaftaran bertahap (multi-step), dukungan tanda tangan digital, manajemen pembayaran, integrasi pesan WhatsApp, ekspor data Excel, serta dashboard statistik interaktif.",
     "orientation": "horizontal",
     "images": [
-      "assets/projects/spsb/Dashboard.png",
-      "assets/projects/spsb/form_1.png",
-      "assets/projects/spsb/form_2.png",
-      "assets/projects/spsb/form_3.png",
-      "assets/projects/spsb/payments.png",
-      "assets/projects/spsb/pdf.png",
-      "assets/projects/spsb/reports.png",
-      "assets/projects/spsb/students.png",
-      "assets/projects/spsb/users.png",
-      "assets/projects/spsb/view.png",
-      "assets/projects/spsb/whatsapp.png"
+      "assets/projects/spsb/Dashboard.jpg",
+      "assets/projects/spsb/form_1.jpg",
+      "assets/projects/spsb/form_2.jpg",
+      "assets/projects/spsb/form_3.jpg",
+      "assets/projects/spsb/payments.jpg",
+      "assets/projects/spsb/pdf.jpg",
+      "assets/projects/spsb/reports.jpg",
+      "assets/projects/spsb/students.jpg",
+      "assets/projects/spsb/users.jpg",
+      "assets/projects/spsb/view.jpg",
+      "assets/projects/spsb/whatsapp.jpg"
     ]
   },
   {
@@ -32,13 +32,13 @@
     "purpose": "Aplikasi Absensi Digital berbasis web real-time (Kiosk-mode) yang dirancang khusus untuk pencatatan kehadiran acara/kegiatan. Fitur utama meliputi Kiosk Mode tanpa otentikasi peserta, persetujuan perangkat (device approval) oleh admin, manajemen event & peserta (bulk import CSV), ekspor laporan Excel (.xlsx) terpisah gender, serta pembaruan paksa (force auto-update) untuk semua kiosk aktif.",
     "orientation": "horizontal",
     "images": [
-      "assets/projects/digital-attendance-app/1. Absensi.png",
-      "assets/projects/digital-attendance-app/2. Proses Absen.png",
-      "assets/projects/digital-attendance-app/3. Login Admin.png",
-      "assets/projects/digital-attendance-app/4. Panel Admin.png",
-      "assets/projects/digital-attendance-app/5. Data Peserta.png",
-      "assets/projects/digital-attendance-app/6. Data Event.png",
-      "assets/projects/digital-attendance-app/7. Dashboard Event.png"
+      "assets/projects/digital-attendance-app/1. Absensi.jpg",
+      "assets/projects/digital-attendance-app/2. Proses Absen.jpg",
+      "assets/projects/digital-attendance-app/3. Login Admin.jpg",
+      "assets/projects/digital-attendance-app/4. Panel Admin.jpg",
+      "assets/projects/digital-attendance-app/5. Data Peserta.jpg",
+      "assets/projects/digital-attendance-app/6. Data Event.jpg",
+      "assets/projects/digital-attendance-app/7. Dashboard Event.jpg"
     ]
   }
 ]

@@ -7,3 +7,4 @@ firebase-debug.*.log
 .DS_Store
 Thumbs.db
 catatan.md
+assets/projects/cmd.ps1

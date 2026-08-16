@@ -31,7 +31,7 @@
     "expirationDate": "21 Mei 2027",
     "credentialId": "pOhQLDM54A",
     "credentialUrl": "https://learn.opswatacademy.com/certificate/pOhQLDM54A",
-    "image": "assets/certificates/introduction_to_cip.png",
+    "image": "assets/certificates/introduction_to_cip.jpg",
     "techStack": ["Cybersecurity", "Critical Infrastructure Protection", "Operational Technology (OT)", "Threat Intelligence"],
     "description": "Sertifikasi yang memvalidasi pemahaman dasar tentang perlindungan infrastruktur kritis (Critical Infrastructure Protection - CIP), identifikasi ancaman siber pada teknologi operasional (OT), serta regulasi kepatuhan keamanan siber."
   }
