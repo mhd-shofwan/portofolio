@@ -1,0 +1,9 @@
+Folder ini disiapkan untuk menyimpan file gambar sertifikat Anda.
+
+Saran penamaan file:
+- dicoding-backend.png
+- fcc-javascript.png
+- fcc-responsive.png
+
+Setelah Anda menaruh file gambar di sini, perbarui properti "image" di file `data/certificates.json` menjadi path lokal seperti:
+"image": "assets/certificates/nama-file-sertifikat.png"

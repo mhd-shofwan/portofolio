@@ -1,0 +1,11 @@
+Folder ini disiapkan untuk menyimpan file gambar screenshot proyek Anda.
+
+Saran struktur folder dan penamaan file sesuai rencana Anda:
+- assets/projects/ecommerce-dashboard/overview.png
+- assets/projects/fittrack-app/home.png
+- assets/projects/ai-code-editor/workspace.png
+
+Setelah Anda membuat folder per proyek dan menaruh gambarnya, perbarui properti "images" di file `data/projects.json` menjadi path lokal seperti:
+"images": [
+  "assets/projects/nama-proyek/nama-gambar.png"
+]

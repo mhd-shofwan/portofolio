@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "name": "Belajar Dasar Cloud dan Gen AI di AWS",
+    "issuer": "Dicoding Indonesia",
+    "issuedDate": "23 Juni 2025",
+    "expirationDate": "23 Juni 2028",
+    "credentialId": "2VX3K89V3XYQ",
+    "credentialUrl": "https://www.dicoding.com/certificates/2VX3K89V3XYQ",
+    "image": "assets/certificates/Dicoding - Sertifikat Cloud AWS Dasar.jpg",
+    "techStack": ["AWS", "Cloud Computing", "Networking", "Storage & Database", "Security, Monitoring & Analytics"],
+    "description": "Pelatihan tentang fondasi komputasi awan (Cloud Computing) AWS, layanan infrastruktur global AWS, keamanan cloud, serta pengenalan teknologi Generative AI di ekosistem Amazon Web Services."
+  },
+  {
+    "id": 2,
+    "name": "Kickstart Your Front End Developer Career with React JS",
+    "issuer": "Edspert.id",
+    "issuedDate": "20 Juni 2023",
+    "expirationDate": "Tanpa Batas",
+    "credentialId": "Partisipasi",
+    "credentialUrl": "",
+    "image": "assets/certificates/Edspert.id - Front End with React JS.jpg",
+    "techStack": ["React JS", "Front-End Development", "JavaScript", "User Interface"],
+    "description": "Webinar pelatihan mengenai fondasi pengembangan aplikasi Front-End menggunakan React JS, pemahaman arsitektur komponen, serta prospek karier profesional Front-End Developer."
+  },
+  {
+    "id": 3,
+    "name": "Introduction to Critical Infrastructure Protection",
+    "issuer": "OPSWAT Academy",
+    "issuedDate": "21 Mei 2026",
+    "expirationDate": "21 Mei 2027",
+    "credentialId": "pOhQLDM54A",
+    "credentialUrl": "https://learn.opswatacademy.com/certificate/pOhQLDM54A",
+    "image": "assets/certificates/introduction_to_cip.png",
+    "techStack": ["Cybersecurity", "Critical Infrastructure Protection", "Operational Technology (OT)", "Threat Intelligence"],
+    "description": "Sertifikasi yang memvalidasi pemahaman dasar tentang perlindungan infrastruktur kritis (Critical Infrastructure Protection - CIP), identifikasi ancaman siber pada teknologi operasional (OT), serta regulasi kepatuhan keamanan siber."
+  }
+]
