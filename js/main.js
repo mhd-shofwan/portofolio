@@ -475,6 +475,30 @@ document.addEventListener('DOMContentLoaded', () => {
     let activeProjectImages = [];
     let activeImageIndex = 0;
 
+    const openModal = () => {
+      if (imageModal && !imageModal.classList.contains('active')) {
+        imageModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        history.pushState({ modalOpen: true }, '');
+      }
+    };
+
+    const closeModal = (popHistory = true) => {
+      if (imageModal && imageModal.classList.contains('active')) {
+        imageModal.classList.remove('active');
+        document.body.style.overflow = '';
+        if (popHistory && history.state && history.state.modalOpen) {
+          history.back();
+        }
+      }
+    };
+
+    window.addEventListener('popstate', () => {
+      if (imageModal && imageModal.classList.contains('active')) {
+        closeModal(false);
+      }
+    });
+
     const updateModalImage = (index) => {
       if (activeProjectImages.length === 0) return;
 
@@ -543,8 +567,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (modalNextBtn) modalNextBtn.style.display = 'none';
           }
 
-          imageModal.classList.add('active');
-          document.body.style.overflow = 'hidden';
+          openModal();
         }
       });
     });
@@ -580,21 +603,13 @@ document.addEventListener('DOMContentLoaded', () => {
           if (modalPrevBtn) modalPrevBtn.style.display = 'none';
           if (modalNextBtn) modalNextBtn.style.display = 'none';
 
-          imageModal.classList.add('active');
-          document.body.style.overflow = 'hidden';
+          openModal();
         }
       });
     });
 
-    const closeModal = () => {
-      if (imageModal) {
-        imageModal.classList.remove('active');
-        document.body.style.overflow = '';
-      }
-    };
-
     if (modalClose) {
-      modalClose.addEventListener('click', closeModal);
+      modalClose.addEventListener('click', () => closeModal(true));
     }
 
     if (modalPrevBtn) {
@@ -614,7 +629,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (imageModal) {
       imageModal.addEventListener('click', (e) => {
         if (e.target === imageModal || e.target.classList.contains('modal-slide')) {
-          closeModal();
+          closeModal(true);
         }
       });
     }
@@ -622,7 +637,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('keydown', (e) => {
       if (imageModal && imageModal.classList.contains('active')) {
         if (e.key === 'Escape') {
-          closeModal();
+          closeModal(true);
         } else if (e.key === 'ArrowLeft' && activeProjectImages.length > 1) {
           updateModalImage(activeImageIndex - 1);
         } else if (e.key === 'ArrowRight' && activeProjectImages.length > 1) {

@@ -422,7 +422,7 @@ header {
 /* Projects Section */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 350px), 1fr));
   gap: 2.5rem;
 }
 
@@ -1049,7 +1049,7 @@ footer {
 /* Certificates Section */
 .certificates-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
   gap: 2rem;
 }
 
@@ -1308,5 +1308,28 @@ footer {
 
   .modal-next-btn {
     right: 1rem;
+  }
+
+  .projects-grid,
+  .certificates-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .project-header,
+  .project-body,
+  .cert-body {
+    padding: 1.2rem;
   }
 }

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mhd-shofwan.web.app/sitemap.xml
