@@ -470,22 +470,65 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
-  // 3. Modal Handler untuk Pratinjau Gambar Screenshot dengan Navigasi Multi-Foto
+  // 3. Modal Handler untuk Pratinjau Gambar Screenshot dengan Pinch-Zoom & Navigasi Multi-Foto
   const setupModal = () => {
     const imageModal = document.getElementById('image-modal');
     const modalTrack = document.getElementById('modal-carousel-track');
     const modalClose = document.getElementById('modal-close');
     const modalPrevBtn = document.getElementById('modal-prev-btn');
     const modalNextBtn = document.getElementById('modal-next-btn');
-    const projectImgWrappers = document.querySelectorAll('.project-img-wrapper');
 
     let activeProjectImages = [];
     let activeImageIndex = 0;
     let isModalOpen = false;
 
+    // Zoom & Pan state
+    let currentScale = 1;
+    let currentTranslateX = 0;
+    let currentTranslateY = 0;
+    let startScale = 1;
+    let startDistance = 0;
+    let startTouchX = 0;
+    let startTouchY = 0;
+    let startTranslateX = 0;
+    let startTranslateY = 0;
+    let isPinching = false;
+    let isPanning = false;
+    let lastTapTime = 0;
+    let swipeStartX = 0;
+
+    const getActiveModalImg = () => {
+      if (!modalTrack) return null;
+      const slides = modalTrack.querySelectorAll('.modal-slide');
+      if (slides[activeImageIndex]) {
+        return slides[activeImageIndex].querySelector('.modal-img');
+      }
+      return null;
+    };
+
+    const resetZoom = (smooth = false) => {
+      currentScale = 1;
+      currentTranslateX = 0;
+      currentTranslateY = 0;
+      isPinching = false;
+      isPanning = false;
+      if (modalTrack) {
+        const allImgs = modalTrack.querySelectorAll('.modal-img');
+        allImgs.forEach(img => {
+          if (smooth) {
+            img.style.transition = 'transform 0.25s cubic-bezier(0.16, 1, 0.3, 1)';
+          } else {
+            img.style.transition = 'none';
+          }
+          img.style.transform = 'translate3d(0px, 0px, 0px) scale(1)';
+        });
+      }
+    };
+
     const openModal = () => {
       if (imageModal && !isModalOpen) {
         isModalOpen = true;
+        resetZoom(false);
         imageModal.classList.add('active');
         document.body.style.overflow = 'hidden';
         history.pushState({ modalOpen: true }, '', '#preview');
@@ -495,6 +538,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeModal = (fromUserAction = true) => {
       if (imageModal && isModalOpen) {
         isModalOpen = false;
+        resetZoom(false);
         imageModal.classList.remove('active');
         document.body.style.overflow = '';
         if (fromUserAction) {
@@ -516,9 +560,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const updateModalImage = (index) => {
       if (activeProjectImages.length === 0) return;
+      resetZoom(false);
 
       const modalDots = document.querySelectorAll('.modal-dot');
-      if (modalDots.length > 0) modalDots[activeImageIndex].classList.remove('active');
+      if (modalDots.length > 0 && modalDots[activeImageIndex]) {
+        modalDots[activeImageIndex].classList.remove('active');
+      }
 
       activeImageIndex = (index + activeProjectImages.length) % activeProjectImages.length;
       
@@ -526,30 +573,29 @@ document.addEventListener('DOMContentLoaded', () => {
         modalTrack.style.transform = `translateX(-${activeImageIndex * 100}%)`;
       }
 
-      if (modalDots.length > 0) modalDots[activeImageIndex].classList.add('active');
+      if (modalDots.length > 0 && modalDots[activeImageIndex]) {
+        modalDots[activeImageIndex].classList.add('active');
+      }
     };
 
-    projectImgWrappers.forEach(wrapper => {
-      wrapper.addEventListener('click', (e) => {
-        if (e.target.closest('.carousel-nav') || e.target.closest('.carousel-dots')) {
-          return;
-        }
-
-        const card = wrapper.closest('.project-card');
+    // Event delegation on document for all project & certificate image clicks
+    document.addEventListener('click', (e) => {
+      // 1. Check Project image click
+      const projectWrapper = e.target.closest('.project-img-wrapper');
+      if (projectWrapper && !e.target.closest('.carousel-nav') && !e.target.closest('.carousel-dots')) {
+        const card = projectWrapper.closest('.project-card');
         if (!card) return;
-        
+
         const projectId = parseInt(card.getAttribute('data-project-id'));
         const project = projectsData.find(p => p.id === projectId);
-        
+
         if (project && imageModal && modalTrack) {
-          activeProjectImages = project.images;
-          
+          activeProjectImages = project.images || [];
+
           const dots = card.querySelectorAll('.dot');
           let activeIndex = 0;
           dots.forEach((dot, idx) => {
-            if (dot.classList.contains('active')) {
-              activeIndex = idx;
-            }
+            if (dot.classList.contains('active')) activeIndex = idx;
           });
           activeImageIndex = activeIndex;
 
@@ -574,29 +620,23 @@ document.addEventListener('DOMContentLoaded', () => {
             }
           }
 
-          if (activeProjectImages.length > 1) {
-            if (modalPrevBtn) modalPrevBtn.style.display = 'flex';
-            if (modalNextBtn) modalNextBtn.style.display = 'flex';
-          } else {
-            if (modalPrevBtn) modalPrevBtn.style.display = 'none';
-            if (modalNextBtn) modalNextBtn.style.display = 'none';
-          }
+          if (modalPrevBtn) modalPrevBtn.style.display = activeProjectImages.length > 1 ? 'flex' : 'none';
+          if (modalNextBtn) modalNextBtn.style.display = activeProjectImages.length > 1 ? 'flex' : 'none';
 
           openModal();
         }
-      });
-    });
+        return;
+      }
 
-    const certImgWrappers = document.querySelectorAll('.cert-img-wrapper');
-
-    certImgWrappers.forEach(wrapper => {
-      wrapper.addEventListener('click', () => {
-        const card = wrapper.closest('.certificate-card');
+      // 2. Check Certificate image click
+      const certWrapper = e.target.closest('.cert-img-wrapper');
+      if (certWrapper && !e.target.closest('.cert-link')) {
+        const card = certWrapper.closest('.certificate-card');
         if (!card) return;
-        
+
         const certId = parseInt(card.getAttribute('data-certificate-id'));
         const cert = certificatesData.find(c => c.id === certId);
-        
+
         if (cert && imageModal && modalTrack) {
           activeProjectImages = [cert.image];
           activeImageIndex = 0;
@@ -620,7 +660,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
           openModal();
         }
-      });
+        return;
+      }
     });
 
     if (modalClose) {
@@ -661,31 +702,125 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    let modalTouchstartX = 0;
-    let modalTouchendX = 0;
+    // Touch Pinch-to-Zoom, Pan & Swipe Handlers
+    if (modalTrack) {
+      modalTrack.addEventListener('touchstart', (e) => {
+        const img = getActiveModalImg();
+        if (!img) return;
 
-    if (imageModal) {
-      imageModal.addEventListener('touchstart', (e) => {
-        modalTouchstartX = e.changedTouches[0].screenX;
-      }, { passive: true });
+        if (e.touches.length === 2) {
+          // Pinch Zoom Start
+          isPinching = true;
+          isPanning = false;
+          startDistance = Math.hypot(
+            e.touches[0].clientX - e.touches[1].clientX,
+            e.touches[0].clientY - e.touches[1].clientY
+          );
+          startScale = currentScale;
+          img.style.transition = 'none';
+        } else if (e.touches.length === 1) {
+          isPinching = false;
+          swipeStartX = e.touches[0].clientX;
+          startTouchX = e.touches[0].clientX;
+          startTouchY = e.touches[0].clientY;
+          startTranslateX = currentTranslateX;
+          startTranslateY = currentTranslateY;
 
-      imageModal.addEventListener('touchend', (e) => {
-        modalTouchendX = e.changedTouches[0].screenX;
-        handleModalSwipe();
+          if (currentScale > 1.05) {
+            isPanning = true;
+            img.style.transition = 'none';
+          } else {
+            isPanning = false;
+          }
+
+          // Double-Tap Zoom Detection
+          const currentTime = Date.now();
+          if (currentTime - lastTapTime < 300) {
+            e.preventDefault();
+            if (currentScale > 1.2) {
+              currentScale = 1;
+              currentTranslateX = 0;
+              currentTranslateY = 0;
+            } else {
+              currentScale = 2.5;
+              const rect = img.getBoundingClientRect();
+              const tapX = e.touches[0].clientX - rect.left - rect.width / 2;
+              const tapY = e.touches[0].clientY - rect.top - rect.height / 2;
+              currentTranslateX = -tapX * 0.8;
+              currentTranslateY = -tapY * 0.8;
+            }
+            img.style.transition = 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)';
+            img.style.transform = `translate3d(${currentTranslateX}px, ${currentTranslateY}px, 0) scale(${currentScale})`;
+            lastTapTime = 0;
+            return;
+          }
+          lastTapTime = currentTime;
+        }
+      }, { passive: false });
+
+      modalTrack.addEventListener('touchmove', (e) => {
+        const img = getActiveModalImg();
+        if (!img) return;
+
+        if (e.touches.length === 2 && isPinching) {
+          e.preventDefault();
+          const currentDistance = Math.hypot(
+            e.touches[0].clientX - e.touches[1].clientX,
+            e.touches[0].clientY - e.touches[1].clientY
+          );
+          if (startDistance > 0) {
+            const factor = currentDistance / startDistance;
+            currentScale = Math.min(Math.max(startScale * factor, 0.8), 4);
+            img.style.transform = `translate3d(${currentTranslateX}px, ${currentTranslateY}px, 0) scale(${currentScale})`;
+          }
+        } else if (e.touches.length === 1 && currentScale > 1.05 && isPanning) {
+          e.preventDefault();
+          const deltaX = e.touches[0].clientX - startTouchX;
+          const deltaY = e.touches[0].clientY - startTouchY;
+          currentTranslateX = startTranslateX + deltaX;
+          currentTranslateY = startTranslateY + deltaY;
+          img.style.transform = `translate3d(${currentTranslateX}px, ${currentTranslateY}px, 0) scale(${currentScale})`;
+        }
+      }, { passive: false });
+
+      modalTrack.addEventListener('touchend', (e) => {
+        const img = getActiveModalImg();
+        if (!img) return;
+
+        if (isPinching && e.touches.length < 2) {
+          isPinching = false;
+          if (currentScale < 1.05) {
+            currentScale = 1;
+            currentTranslateX = 0;
+            currentTranslateY = 0;
+            img.style.transition = 'transform 0.25s cubic-bezier(0.16, 1, 0.3, 1)';
+            img.style.transform = 'translate3d(0px, 0px, 0px) scale(1)';
+          }
+        } else if (!isPinching && e.touches.length === 0) {
+          if (currentScale <= 1.05) {
+            // Normal swipe between slides when not zoomed
+            const endX = e.changedTouches[0].clientX;
+            const swipeLength = endX - swipeStartX;
+            const threshold = 50;
+            if (activeProjectImages.length > 1) {
+              if (swipeLength > threshold) {
+                updateModalImage(activeImageIndex - 1);
+              } else if (swipeLength < -threshold) {
+                updateModalImage(activeImageIndex + 1);
+              }
+            }
+          } else {
+            // Constrain panning boundaries when zoomed
+            const maxPanX = (img.clientWidth * (currentScale - 1)) / 2;
+            const maxPanY = (img.clientHeight * (currentScale - 1)) / 2;
+            currentTranslateX = Math.max(-maxPanX, Math.min(maxPanX, currentTranslateX));
+            currentTranslateY = Math.max(-maxPanY, Math.min(maxPanY, currentTranslateY));
+            img.style.transition = 'transform 0.25s cubic-bezier(0.16, 1, 0.3, 1)';
+            img.style.transform = `translate3d(${currentTranslateX}px, ${currentTranslateY}px, 0) scale(${currentScale})`;
+          }
+        }
       }, { passive: true });
     }
-
-    const handleModalSwipe = () => {
-      const threshold = 50;
-      const swipeLength = modalTouchendX - modalTouchstartX;
-      if (activeProjectImages.length > 1) {
-        if (swipeLength > threshold) {
-          updateModalImage(activeImageIndex - 1);
-        } else if (swipeLength < -threshold) {
-          updateModalImage(activeImageIndex + 1);
-        }
-      }
-    };
 
     const modalDotsContainer = document.getElementById('modal-carousel-dots');
     if (modalDotsContainer) {
