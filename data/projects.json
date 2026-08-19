@@ -4,7 +4,7 @@
     "name": "SPSB - Sistem Penerimaan Santri Baru",
     "version": "v1.0.0",
     "lastUpdated": "2025-10-17",
-    "githubUrl": "https://github.com/mhd-shofwan/spsb-showcase",
+    "githubUrl": "https://github.com/mhd-shofwan/spsb",
     "techStack": ["PHP 8", "MySQL", "Tailwind CSS", "jQuery", "JavaScript", "WhatsApp API"],
     "purpose": "SPSB merupakan sistem manajemen penerimaan santri berbasis web yang dirancang untuk pondok pesantren dan lembaga pendidikan Islam. Sistem ini memiliki alur pendaftaran bertahap (multi-step), dukungan tanda tangan digital, manajemen pembayaran, integrasi pesan WhatsApp, ekspor data Excel, serta dashboard statistik interaktif.",
     "orientation": "horizontal",
